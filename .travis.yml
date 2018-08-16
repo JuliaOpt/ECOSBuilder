@@ -1,0 +1,40 @@
+language: julia
+os:
+  - linux
+julia:
+  - 0.6
+notifications:
+  email: false
+git:
+  depth: 99999999
+cache:
+  timeout: 1000
+  directories:
+    - downloads
+env:
+  global:
+    - BINARYBUILDER_DOWNLOADS_CACHE=downloads
+    - BINARYBUILDER_AUTOMATIC_APPLE=false
+sudo: required
+
+# Before anything else, get the latest versions of things
+before_script:
+  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryProvider.jl")'
+  - julia -e 'Pkg.clone("https://github.com/JuliaPackaging/BinaryBuilder.jl"); Pkg.build()'
+
+script:
+  - julia build_tarballs.jl
+
+
+deploy:
+    provider: releases
+    api_key:
+        # Note; this api_key is only valid for juan-pablo-vielma/ECOSBuilder; you need
+        # to make your own: https://docs.travis-ci.com/user/deployment/releases/
+        secure: M33Yum9xsmznOOGjBYSDczXjo9dvqV7SbUXpFPCqJtoYpZfFyepN5Ft9Eq7AIpfeevx9WZLKXFTAQ0mG6AFottyclmTKngLfDKPasknpO9MwSax3+O+tv5TC/LFultj8SH/Tc1IpJiXVXmSSB/YAIkP517qo1W7DWT9tfbx3Egs72MgCSFIkO2SwQMvjMxSwYEDrLupFmGMQrCYG3LRpIR3v9CtvWLVPTvOAUf+mSlSG7+G1iL6svbfRQ32HmHkF817d+bF7GifXQDnwxxnjgOdIdKYq/P5iSUdpou/TIA+/ddjOcC/G3/cf8/tirVIhYuKwGJ1yjDHY83wn7yJNXpG7ZgthQUzVCCODbV4jlwDLwhLl72IelkIfG7zbEGbndO2Ax39t2vdYeXDgq55drMSWw2AG2iXBXC9QMHyhcF/pVRoXB4CTLmk8qXVDMDxtBGAEgzNqaGbWRkN5Xh83pszBVLwwG+Y8FpL4FmyqbBkzv0OvO140TKREDzL9dsgsbvXQBdWvJb3TARMPKJ+cItNWygUu4mAsJJZ5sHVDdLQbpgRGLGZrPCSSka2nX6Ytr0dajvnWTLlksO12iujm9YwNT/8+Nja0i0+OQ1ox7VnwqV/xDCrgysb7CpjOqZ+7A6EWq4uZ0xtJ10IxAI+ofyX453fBVpNtcOuBto+W8P8=
+    file_glob: true
+    file: products/*
+    skip_cleanup: true
+    on:
+        repo: juan-pablo-vielma/ECOSBuilder
+        tags: true
