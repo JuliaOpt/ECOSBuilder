@@ -15,10 +15,16 @@ cd $WORKSPACE/srcdir
 cd ecos-2.0.6/
 make shared
 mkdir $prefix/lib
-cp libecos.so $prefix/lib
-cp libecos.dll $prefix/lib
-cp libecos.dylib $prefix/lib
 
+if [[ $target = *"w64"* ]]; then
+    cp libecos.dll $prefix/lib
+fi
+if [[ $target = *"linux"* ]] || [[ $target = *"freebsd"* ]]; then
+    cp libecos.so $prefix/lib;
+fi
+if [[ $target = *"apple"* ]]; then
+    cp libecos.dylib $prefix/lib
+fi
 """
 
 # These are the platforms we will build for by default, unless further
