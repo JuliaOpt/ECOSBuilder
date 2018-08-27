@@ -2,6 +2,10 @@
 # `julia build_tarballs.jl --help` to see a usage message.
 using BinaryBuilder
 
+
+name = "GLPKBuilder"
+version = v"2.0.6"
+
 # Collection of sources required to build ECOSBuilder
 sources = [
     "https://github.com/embotech/ecos/archive/v2.0.6.tar.gz" =>
@@ -56,5 +60,5 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "ECOSBuilder", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
 
