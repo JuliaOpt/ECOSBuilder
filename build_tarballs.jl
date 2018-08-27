@@ -3,7 +3,7 @@
 using BinaryBuilder
 
 
-name = "GLPKBuilder"
+name = "ECOSBuilder"
 version = v"2.0.6"
 
 # Collection of sources required to build ECOSBuilder
