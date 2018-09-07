@@ -4,19 +4,19 @@ using BinaryBuilder
 
 
 name = "ECOSBuilder"
-version = v"2.0.6"
+version = v"2.0.5"
 
 # Collection of sources required to build ECOSBuilder
 sources = [
     "https://github.com/embotech/ecos/archive/v2.0.5.tar.gz" =>
-    "c2acc644907bd1473a86ad76e43557b47544402cdc74d17b235503356cbe8c27",
+    "14c6ef81dfe9dad6af353e3499ad3a7a0eb1ebd289a995b038e3bc67c6101151",
 
 ]
 
 # Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir
-cd ecos-2.0.6/
+cd ecos-2.0.5/
 make shared
 mkdir $prefix/lib
 
