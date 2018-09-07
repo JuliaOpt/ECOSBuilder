@@ -8,8 +8,8 @@ version = v"2.0.6"
 
 # Collection of sources required to build ECOSBuilder
 sources = [
-    "https://github.com/embotech/ecos/archive/v2.0.6.tar.gz" =>
-    "ffc4b44e813a5c68abd464b638d216f09385d9b6e40cf487ac384289e6a27988",
+    "https://github.com/embotech/ecos/archive/v2.0.5.tar.gz" =>
+    "c2acc644907bd1473a86ad76e43557b47544402cdc74d17b235503356cbe8c27",
 
 ]
 
